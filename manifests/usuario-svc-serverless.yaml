@@ -1,0 +1,14 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: usuario-svc-serverless
+spec:
+  template:
+    spec:
+      containers:
+        - image: sacnavi/usuario-svc-m6p1:1.0
+          ports:
+            - containerPort: 8081
+          env:
+            - name: APP_DB_URL
+              value: mongodb://admin:admin123@mongodb:27017/usuariodb?authSource=admin

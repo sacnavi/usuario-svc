@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: usuario-svc-m6p1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: usuario-svc-m6p1
+  template:
+    metadata:
+      labels:
+        app: usuario-svc-m6p1
+    spec:
+      containers:
+        - name: usuario-svc-m6p1
+          image: sacnavi/usuario-svc-m6p1:1.0
+          ports:
+            - containerPort: 8081
+          env:
+            - name: APP_DB_URL
+              value: mongodb://admin:admin123@mongodb:27017/usuariodb
+            - name: APP_DB
+              value: usuariodb
+            - name: APP_USR
+              value: admin
+            - name: APP_PASS
+              value: admin123
